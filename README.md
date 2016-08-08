@@ -110,11 +110,14 @@ http://just2do.iteye.com/blog/2185254
       - FileSystem.mkdirs();
    - 查看文件系统
       - FileStatus:封装了文件的文件长度|块大小|副本|修改时间|所有者以及权限信息
+   - 文件过滤|文件删除....
   
 
 #### 通过http来访问HDFS:(两种方式)
 - 直接访问.
 - 通过代理访问.
+
+## hadoop 的I/O操作
 
 
 
