@@ -104,8 +104,13 @@ http://just2do.iteye.com/blog/2185254
          }
       }
    }
-   
   ```
+- 文件目录:(FileSystem)
+   - 文件的创建
+      - FileSystem.mkdirs();
+   - 查看文件系统
+      - FileStatus:封装了文件的文件长度|块大小|副本|修改时间|所有者以及权限信息
+  
 
 #### 通过http来访问HDFS:(两种方式)
 - 直接访问.
