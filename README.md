@@ -91,12 +91,20 @@ http://just2do.iteye.com/blog/2185254
          InputStream in = null;
          try {
             in = fs.open(new Path(uri));
+            <!--
+            in.seek(0);
+            fs.open(new Path(uri))返回的就是FSDataInputStream对象
+            通过FSDataInputStream API读取数据:支持随机访问,
+            1.由此可以从流的任意位置读取数据.
+            2.从指定的文件偏移量来读取数据
+            -->
             IOUtils.copyBytes(in, System.out, 4096, false);
          } finally {
             IOUtils.closeStream(in);
          }
       }
    }
+   
   ```
 
 #### 通过http来访问HDFS:(两种方式)
