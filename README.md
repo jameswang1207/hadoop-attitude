@@ -63,20 +63,24 @@ http://just2do.iteye.com/blog/2185254
    
 ### 三、 通过代码访问文件系统(hadoop使用java写的)(java接口)
   ```java
-  public class URLCat {
-    static {
+     <!--从Hadoop URL读取数据-->
+   public class URLCat {
+   
+     static {
+      <!--每个java虚拟机只能调用一次该方法-->
       URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory());
-    }
-    public static void main(String[] args) throws Exception {
-      InputStream in = null;
-      try {
-        in = new URL(args[0]).openStream();
-        IOUtils.copyBytes(in, System.out, 4096, false);
-      } finally {
-        IOUtils.closeStream(in);
+     }
+     
+     public static void main(String[] args) throws Exception {
+         InputStream in = null;
+         try {
+            in = new URL(args[0]).openStream();
+            IOUtils.copyBytes(in, System.out, 4096, false);
+         } finally {
+            IOUtils.closeStream(in);
+         }
       }
-    }
-  }
+   }
   ```
 
 #### 通过http来访问HDFS:(两种方式)
