@@ -50,6 +50,43 @@ http://just2do.iteye.com/blog/2185254
 
 #### datanode:HDFS的工作节点,存放数据块
 
+#### 数据的管理策略:
+- 图片
+
+#### HDFS中文件的读写操作
+- 图片
+
+#### HDFS的特点
+- 图片
+
+### 二、 HDFS的命令行接口
+   
+### 三、 通过代码访问文件系统(hadoop使用java写的)(java接口)
+  ```java
+  public class URLCat {
+    static {
+      URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory());
+    }
+    public static void main(String[] args) throws Exception {
+      InputStream in = null;
+      try {
+        in = new URL(args[0]).openStream();
+        IOUtils.copyBytes(in, System.out, 4096, false);
+      } finally {
+        IOUtils.closeStream(in);
+      }
+    }
+  }
+  ```
+
+#### 通过http来访问HDFS:(两种方式)
+- 直接访问.
+- 通过代理访问.
+
+
+
+
+
 
 
 
