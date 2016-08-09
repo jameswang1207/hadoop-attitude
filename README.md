@@ -157,8 +157,26 @@ http://just2do.iteye.com/blog/2185254
          - Writable.........
    
    - 序列化系统:Avro
-      - hadoop中的Writable的不足,缺乏语言的移值性.它拥有一种被多种语言处理的数据格式.
-   
+      - what
+         - hadoop中的Writable的不足,缺乏语言的移值性.它拥有一种被多种语言处理的数据格式.
+         - 数据格式用语言无关的模式定义. 
+         - 模式通常使用JSON来定义.
+         - 支持压缩和切分.
+      - where
+         - 内存中的序列化和反序列化(Avro提供了api)(文件模式的扩展名为avsc).
+         ```json
+            {
+              "type": "record",
+              "name": "StringPair",
+              "doc": "A pair of strings.",
+              "fields": [
+                {"name": "left", "type": "string"},
+                {"name": "right", "type": "string"}
+              ]
+            }
+         ```
+      
+      
    
 
 
