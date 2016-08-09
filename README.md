@@ -186,7 +186,51 @@ http://just2do.iteye.com/blog/2185254
       -  SequenceFile
       -  MapFile
          
-            
+## hadoop MapReduce
+### MapReduce的工作机制:
+   - what:
+      - 例子:1000副扑克拍:将牌分成n份,每个人统计每个花色数字出现的次数(map)|(数据交换shulft)|进行归并(相同花色的相同数字放在一起(reduce)),找      出结果.
+      - 分而治之的方法,将一个大任务分成多个小任务(map),并行执行后,合并结果(reduce) .
+   
+  - mapReduce 运行的流程 
+      - job task包含maptask 和 reducetask
+      - mapReduce 的体系结构
+         - 图
+         - 作业来放在队列中
+            - JobTracker:进行作业调度,分配任务,监控任务的执行进度,监控taskTrack的状态,
+            - TaskTracker:执行任务,向JobTracker发送自己当前的状态
+         - 将TaskTrack与node放在一个节点上(task可以很块获得数数)
+      
+      - mapReduce的作业的执行过程:
+         - 作业提交
+         - 作业初始化
+         - 任务分配
+         - 任务执行
+         - 进度和状态跟新
+         - 作业完成
+      
+   - mapReduce的容错机制
+      - 重复执行(大于四次放弃执行)
+      - 推测执行(一个执行很慢,重启另一个TaskTracker来执行相同的任务,前一个还是执行)
+   
+   - mapReduce任务失败
+
+### MapReduce 应用开发:
+   #### 配置 合并
+      - 通过Configuration来对配置的资源进行整合
+       
+      ```java
+         Configuration conf = new Configuration();
+         conf.addResource("conf1.xml");
+         conf.addResource("conf2.xml");
+         
+         <!--conf.getInt(name);-->
+      ```
+      - 辅助类运行hadoop程序:
+         - Tool
+         - ToolRunner
+      
+      - 用MRUnit来进行测试
       
       
    
