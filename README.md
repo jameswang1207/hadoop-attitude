@@ -187,6 +187,10 @@ http://just2do.iteye.com/blog/2185254
       -  MapFile
          
 ## hadoop MapReduce
+### 概念
+   - 用于数据处理的编程模型
+   - 用于处理大规模的数据集 
+   
 ### MapReduce的工作机制:
    - what:
       - 例子:1000副扑克拍:将牌分成n份,每个人统计每个花色数字出现的次数(map)|(数据交换shulft)|进行归并(相同花色的相同数字放在一起(reduce)),找      出结果.
