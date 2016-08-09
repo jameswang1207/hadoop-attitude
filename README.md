@@ -164,6 +164,7 @@ http://just2do.iteye.com/blog/2185254
          - 支持压缩和切分.
       - where
          - 内存中的序列化和反序列化(Avro提供了api)(文件模式的扩展名为avsc).
+         
          ```json
             {
               "type": "record",
