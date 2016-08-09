@@ -201,7 +201,15 @@ http://just2do.iteye.com/blog/2185254
       - mapReduce 的体系结构
          - 图
          - 作业来放在队列中
-            - JobTracker:进行作业调度,分配任务,监控任务的执行进度,监控taskTrack的状态,
+            - JobTracker:
+               - 进行作业调度
+               - 分配任务
+               - 监控任务的执行进度
+               - 监控taskTrack的状态
+               - 重启失败
+               - 过慢的任务
+               - 进程任务登记
+               
             - TaskTracker:执行任务,向JobTracker发送自己当前的状态
          - 将TaskTrack与node放在一个节点上(task可以很块获得数数)
       
@@ -216,6 +224,7 @@ http://just2do.iteye.com/blog/2185254
    - mapReduce的容错机制
       - 重复执行(大于四次放弃执行)
       - 推测执行(一个执行很慢,重启另一个TaskTracker来执行相同的任务,前一个还是执行)
+      - 
    
    - mapReduce任务失败
 
