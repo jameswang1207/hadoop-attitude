@@ -156,7 +156,7 @@ http://just2do.iteye.com/blog/2185254
       - hadoop自己的序列化格式Writable:但是不易被java以外的语言进行扩展.
          - Writable.........
    
-   - 序列化系统:Avro
+   - 序列化系统:Avro(一种语言写入另一种语言读取)
       - what
          - hadoop中的Writable的不足,缺乏语言的移值性.它拥有一种被多种语言处理的数据格式.
          - 数据格式用语言无关的模式定义. 
@@ -164,18 +164,29 @@ http://just2do.iteye.com/blog/2185254
          - 支持压缩和切分.
       - where
          - 内存中的序列化和反序列化(Avro提供了api)(文件模式的扩展名为avsc).
+            - 存储文件格式为json的模式文件后缀为avsc. 
          
-         ```json
-            {
-              "type": "record",
-              "name": "StringPair",
-              "doc": "A pair of strings.",
-              "fields": [
-                {"name": "left", "type": "string"},
-                {"name": "right", "type": "string"}
-              ]
-            }
-         ```
+            ```json
+               {
+                 "type": "record",
+                 "name": "StringPair",
+                 "doc": "A pair of strings.",
+                 "fields": [
+                   {"name": "left", "type": "string"},
+                   {"name": "right", "type": "string"}
+                 ]
+               }
+            ```
+      - how 
+         - 写入流中
+         - 写入数据文件
+         - MapReduce的运用.
+            
+   -  基于文件的数据结构:一些应用中,我们需要特殊的数据结构来存储自己的数据.
+      -  SequenceFile
+      -  MapFile
+         
+            
       
       
    
