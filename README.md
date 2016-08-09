@@ -186,14 +186,18 @@ http://just2do.iteye.com/blog/2185254
       -  SequenceFile
       -  MapFile
          
-## hadoop MapReduce
+## hadoop MapReduce（YARN上的mapReduce）
 ### 概念
    - 用于数据处理的编程模型
-   - 用于处理大规模的数据集 
+   - 用于处理大规模的数据集
+   - Yet Another Resource Negotiator： 另一中资源管协调者
+   - YARN上的mapReduce分为连个独立的守护进程
+      - 负责协调集群上计算资源的分配---->资源管理器
+      - 负责启动和监视集群中机器上的计算容器----->节点管理器
    
 ### MapReduce的工作机制:
    - what:
-      - 例子:1000副扑克拍:将牌分成n份,每个人统计每个花色数字出现的次数(map)|(数据交换shulft)|进行归并(相同花色的相同数字放在一起(reduce)),找      出结果.
+      - 例子:1000副扑克拍:将牌分成n份,每个人统计每个花色数字出现的次数(map)|(数据交换shulft)|进行归并(相同花色的相同数字放在一起(reduce)),找出结果.
       - 分而治之的方法,将一个大任务分成多个小任务(map),并行执行后,合并结果(reduce) .
    
   - mapReduce 运行的流程 
@@ -202,12 +206,11 @@ http://just2do.iteye.com/blog/2185254
          - 图
          - 作业来放在队列中
             - JobTracker:
-               - 进行作业调度
+               - 作业调度
                - 分配任务
                - 监控任务的执行进度
                - 监控taskTrack的状态
-               - 重启失败
-               - 过慢的任务
+               - 重启失败或过慢的任务
                - 进程任务登记
                
             - TaskTracker:执行任务,向JobTracker发送自己当前的状态
@@ -224,7 +227,6 @@ http://just2do.iteye.com/blog/2185254
    - mapReduce的容错机制
       - 重复执行(大于四次放弃执行)
       - 推测执行(一个执行很慢,重启另一个TaskTracker来执行相同的任务,前一个还是执行)
-      - 
    
    - mapReduce任务失败
 
