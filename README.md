@@ -275,16 +275,37 @@ http://just2do.iteye.com/blog/2185254
       - application master 运行失败(RM检测到失败,在新的容器中开始新的实例)
       - 节点管理器运行失败(停止向RM发送心跳,并移除可用资源管理器池(故障恢复),失败次数过高,拉黑)
       - 资源管理器运行失败
+      - 推测执行
        
    - shuffle and 排序
-      - 系统进行排序的过程--->shuffle.
+      - Shuffle描述着数据从map task输出到reduce task输入的这段过程--->shuffle.
+         - http://younglibin.iteye.com/blog/1929278
+      - what 
+         - hadoop 大部分map task与reduce task的执行是在不同的节点上.因此Reduce执行时需要跨节点去拉取其它节点上的map task结果.
+         - 如果集群正在运行的job有很多，那么task的正常执行对集群内部的网络资源消耗会很严重
+      - to do :
+         - 完整地从map task端拉取数据到reduce 端.
+         - 在跨节点拉取数据时，尽可能地减少对带宽的不必要消耗.
+         - 减少磁盘IO对task执行的影响。
+        
       - map端
-      
-         ![](./images/map.jpg)
-
+         - 整个流程分四部:
+         
+            ![](./images/map.jpg)
+            
+            - 获取来自HDFS的数据分片 
+            - 通过map后获得各个任务的结果(map的输出结果有那个reduce来进行获取?????)默认对key hash后再以reduce task数量取模
+            - 这个内存缓冲区是有大小限制的，默认是100MB。当maptask的输出结果很多时，就可能会撑爆内存，所以需要在一定条件下将缓冲区中的数据临时写入磁盘，然后重新利用这块缓冲区.
+            - 将这些溢写文件归并到一起，这个过程就叫做Merge.
+            - 生成的这个文件也存放在TaskTracker够得着的某个本地目录内.
+            
       - reduce端
        
          ![](./images/reduce.jpg)
+         
+         -  Copy过程，简单地拉取数据
+         -  Merge阶段
+         -  不断地merge后，最后会生成一个“最终文件” ,进行reduce操作
       
 
 
