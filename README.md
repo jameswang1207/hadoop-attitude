@@ -186,25 +186,30 @@ http://just2do.iteye.com/blog/2185254
       -  SequenceFile
       -  MapFile
          
-## hadoop MapReduce（YARN上的mapReduce）
-### 概念
+## hadoop MapReduce
+### 经典的mapReduce  vs  YARN
+#### 概念
    - 用于数据处理的编程模型
    - 用于处理大规模的数据集
-   - Yet Another Resource Negotiator： 另一中资源管协调者
-   - YARN上的mapReduce分为连个独立的守护进程
-      - 负责协调集群上计算资源的分配---->资源管理器
-      - 负责启动和监视集群中机器上的计算容器----->节点管理器
    
-### MapReduce的工作机制:
+#### MapReduce的工作机制:
    - what:
       - 例子:1000副扑克拍:将牌分成n份,每个人统计每个花色数字出现的次数(map)|(数据交换shulft)|进行归并(相同花色的相同数字放在一起(reduce)),找出结果.
       - 分而治之的方法,将一个大任务分成多个小任务(map),并行执行后,合并结果(reduce) .
+      
+#### 经典模型(mapperReduce)
+
+  - 经典的mapperReduce包含的实体 
+      - 客户端(提交mapperReduce作业)
+      - jobtracker,协调作业的运行(java 运用程序) 类名JobTracker
+      - tasktracker,运行作业划分后的任务(java 运用程序) 类名TaskTracker
+      - 分布式文件系统
    
-  - mapReduce 运行的流程 
-      - job task包含maptask 和 reducetask
-      - mapReduce 的体系结构
+  - mapReduce 运行的流程
+      - mapReduce工作原理
          - 图
-         - 作业来放在队列中
+         
+         - 作业放在队列中
             - JobTracker:
                - 作业调度
                - 分配任务
@@ -223,12 +228,27 @@ http://just2do.iteye.com/blog/2185254
          - 任务执行
          - 进度和状态跟新
          - 作业完成
-      
-   - mapReduce的容错机制
-      - 重复执行(大于四次放弃执行)
-      - 推测执行(一个执行很慢,重启另一个TaskTracker来执行相同的任务,前一个还是执行)
-   
-   - mapReduce任务失败
+         
+#### YARN (mapperReduce) -> (yet Another Resource Negotiator):另一种资源管理协调者
+   - what 
+      YARN : 新的 Hadoop 资源管理器，它是一个通用资源管理系统.
+         - http://baike.baidu.com/link?url=OLm0t88P-HB3mcIvEyxM58lrO6GiyNP-VybSMUg-rEz4Kk5UUpDuE1P70q8HCDjxiOTc0PhV7VNf80xqzLXJy_
+         - YARN的基本思想是将JobTracker的两个主要功能（资源管理和作业调度/监控）分离.(YARN的主要架构)
+            - ResourceManager(RM)
+               一个全局的资源管理器，负责整个系统的资源管理和分配.
+                  - 调度器: 纯调度器.
+                  - 应用程序管理器:整个系统中所有应用程序，包括应用程序提交、与调度器协商资源以启动ApplicationMaster、监控ApplicationMaster运行状态并在失败时重新启动它等.
+            - ApplicationMaster(AM)
+               用户提交的每个应用程序均包含一个AM
+                  - 与RM调度器协商以获取资源
+                  - 将得到的任务进一步分配给内部的任务
+                  - 与NM通信以启动/停止任务
+                  - 监控所有任务运行状态，并在任务运行失败时重新为任务申请资源以重启任务
+                  - RM只负责监控AM，在AM运行失败时候启动它，RM并不负责AM内部任务的容错，这由AM来完成
+            - NodeManager(NM)
+               NM是每个节点上的资源和任务管理器，一方面，它会定时地向RM汇报本节点上的资源使用情况和各个Container的运行状态；另一方面，它接收并处理来自AM的Container启动/停止等各种请求。
+            - Container
+               Container是YARN中的资源抽象，它封装了某个节点上的多维度资源，如内存、CPU、磁盘、网络等，当AM向RM申请资源时，RM为AM返回的资源便是用Container表示。YARN会为每个任务分配一个Container，且该任务只能使用该Container中描述的资源
 
 ### MapReduce 应用开发:
    #### 配置 合并
