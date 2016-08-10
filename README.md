@@ -56,12 +56,10 @@ http://just2do.iteye.com/blog/2185254
 #### HDFS中文件的读写操作
    - 读
     
-      - ![](./images/plot.jpg)      
-
+      - ![](./images/plot.jpg)
    - 写
 
       - ![](./images/write.jpg)  
-      
 #### HDFS的特点
 - 数据冗余,硬件容错
 - 流式数据访问
@@ -214,7 +212,7 @@ http://just2do.iteye.com/blog/2185254
    
   - mapReduce 运行的流程
       - mapReduce工作原理
-         - 图
+         - ![](./images/mapreduce1.jpg)
          
          - 作业放在队列中
             - JobTracker:
@@ -274,7 +272,7 @@ http://just2do.iteye.com/blog/2185254
          </configuration>
       ```
    - mapReduce2 运行的流程
-      - 图
+      - ![](./images/mapReduce2.jpg)
    
    - 失败(通过检测获得失败信息)
       - 任务运行失败(尝试运行4次,还是失败则标记)
