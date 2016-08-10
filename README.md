@@ -51,11 +51,17 @@ http://just2do.iteye.com/blog/2185254
 #### datanode:HDFS的工作节点,存放数据块
 
 #### 数据的管理策略:
-- 图片
+   - ![](./images/plot.jpg)
 
 #### HDFS中文件的读写操作
-- 图片
+   - 读
+    
+      - ![](./images/plot.jpg)      
 
+   - 写
+
+      - ![](./images/write.jpg)  
+      
 #### HDFS的特点
 - 数据冗余,硬件容错
 - 流式数据访问
