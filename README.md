@@ -283,7 +283,9 @@ http://just2do.iteye.com/blog/2185254
          ![](./images/map.jpg)
 
       - reduce端
-      - 
+       
+         ![](./images/reduce.jpg)
+      
 
 
 ### MapReduce 应用开发:
