@@ -57,9 +57,11 @@ http://just2do.iteye.com/blog/2185254
    - 读
     
       - ![](./images/plot.jpg)
+   
    - 写
 
-      - ![](./images/write.jpg)  
+      - ![](./images/write.jpg) 
+
 #### HDFS的特点
 - 数据冗余,硬件容错
 - 流式数据访问
