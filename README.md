@@ -279,7 +279,7 @@ http://just2do.iteye.com/blog/2185254
    - shuffle and 排序
       - 系统进行排序的过程--->shuffle.
       - map端
-         ![map端](https://cdn.quncrm.com/jZxd1i)
+         ![map端](./images/map.jpg)
       - reduce端
       - 
 
