@@ -250,7 +250,20 @@ http://just2do.iteye.com/blog/2185254
                - NM是每个节点上的资源和任务管理器，一方面，它会定时地向RM汇报本节点上的资源使用情况和各个Container的运行状态；另一方面，它接收并处理来自AM的Container启动/停止等各种请求。
             - Container
                - Container是YARN中的资源抽象，它封装了某个节点上的多维度资源，如内存、CPU、磁盘、网络等，当AM向RM申请资源时，RM为AM返回的资源便是用Container表示。YARN会为每个任务分配一个Container，且该任务只能使用该Container中描述的资源
-
+   - how
+      - how to use it : mapred-site.xml
+      ```xml
+         <configuration>
+            <property>
+               <name>mapreduce.framework.name</name>
+               <value>yarn</value>
+            </property>
+         </configuration>
+      ```
+      
+   - mapReduce2 运行的流程
+       
+     
 ### MapReduce 应用开发:
    #### 配置 合并
       - 通过Configuration来对配置的资源进行整合
