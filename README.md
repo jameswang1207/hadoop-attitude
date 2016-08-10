@@ -135,7 +135,8 @@ http://just2do.iteye.com/blog/2185254
 - 客户端通过LocalFileSystem or  checksunFileSystem (校验和计算).
 
 ### 文件压缩和解压:减少存储空间,加快数据在网络间和磁盘上的传输.
-   -  what
+
+   - what
       - 在进行文件压缩时,要了解这些压缩格式是否支持切分.
       - 应该使用那种压缩格式?(gzip)
         - 使用容器文件格式(这些都是同时支持压缩和切分的)
@@ -231,7 +232,7 @@ http://just2do.iteye.com/blog/2185254
          
 #### YARN (mapperReduce) -> (yet Another Resource Negotiator):另一种资源管理协调者
    - what 
-      YARN : 新的 Hadoop 资源管理器，它是一个通用资源管理系统.
+      - YARN : 新的 Hadoop 资源管理器，它是一个通用资源管理系统.
          - http://baike.baidu.com/link?url=OLm0t88P-HB3mcIvEyxM58lrO6GiyNP-VybSMUg-rEz4Kk5UUpDuE1P70q8HCDjxiOTc0PhV7VNf80xqzLXJy_
          - YARN的基本思想是将JobTracker的两个主要功能（资源管理和作业调度/监控）分离.(YARN的主要架构)
             - ResourceManager(RM)
@@ -239,16 +240,16 @@ http://just2do.iteye.com/blog/2185254
                   - 调度器: 纯调度器.
                   - 应用程序管理器:整个系统中所有应用程序，包括应用程序提交、与调度器协商资源以启动ApplicationMaster、监控ApplicationMaster运行状态并在失败时重新启动它等.
             - ApplicationMaster(AM)
-               用户提交的每个应用程序均包含一个AM
+               - 用户提交的每个应用程序均包含一个AM
                   - 与RM调度器协商以获取资源
                   - 将得到的任务进一步分配给内部的任务
                   - 与NM通信以启动/停止任务
                   - 监控所有任务运行状态，并在任务运行失败时重新为任务申请资源以重启任务
                   - RM只负责监控AM，在AM运行失败时候启动它，RM并不负责AM内部任务的容错，这由AM来完成
             - NodeManager(NM)
-               NM是每个节点上的资源和任务管理器，一方面，它会定时地向RM汇报本节点上的资源使用情况和各个Container的运行状态；另一方面，它接收并处理来自AM的Container启动/停止等各种请求。
+               - NM是每个节点上的资源和任务管理器，一方面，它会定时地向RM汇报本节点上的资源使用情况和各个Container的运行状态；另一方面，它接收并处理来自AM的Container启动/停止等各种请求。
             - Container
-               Container是YARN中的资源抽象，它封装了某个节点上的多维度资源，如内存、CPU、磁盘、网络等，当AM向RM申请资源时，RM为AM返回的资源便是用Container表示。YARN会为每个任务分配一个Container，且该任务只能使用该Container中描述的资源
+               - Container是YARN中的资源抽象，它封装了某个节点上的多维度资源，如内存、CPU、磁盘、网络等，当AM向RM申请资源时，RM为AM返回的资源便是用Container表示。YARN会为每个任务分配一个Container，且该任务只能使用该Container中描述的资源
 
 ### MapReduce 应用开发:
    #### 配置 合并
