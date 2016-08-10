@@ -229,7 +229,7 @@ http://just2do.iteye.com/blog/2185254
          - 任务执行
          - 进度和状态跟新
          - 作业完成
-         
+
 #### YARN (mapperReduce) -> (yet Another Resource Negotiator):另一种资源管理协调者
    - what 
       - YARN : 新的 Hadoop 资源管理器，它是一个通用资源管理系统.
@@ -251,6 +251,13 @@ http://just2do.iteye.com/blog/2185254
             - Container
                - Container是YARN中的资源抽象，它封装了某个节点上的多维度资源，如内存、CPU、磁盘、网络等，当AM向RM申请资源时，RM为AM返回的资源便是用Container表示。YARN会为每个任务分配一个Container，且该任务只能使用该Container中描述的资源
    - how
+      - Yarn包含的实体
+         - 提交MapReduce的客户端
+         - YARN资源管理器
+         - YARN节点管理器
+         - mapReduce应用程序master,负责协调运行mapReduce的任务
+         - 分布式文件管理系统(hdfs)
+         
       - how to use it : mapred-site.xml
       ```xml
          <configuration>
@@ -260,10 +267,23 @@ http://just2do.iteye.com/blog/2185254
             </property>
          </configuration>
       ```
-      
    - mapReduce2 运行的流程
+      - 图
+   
+   - 失败(通过检测获得失败信息)
+      - 任务运行失败(尝试运行4次,还是失败则标记)
+      - application master 运行失败(RM检测到失败,在新的容器中开始新的实例)
+      - 节点管理器运行失败(停止向RM发送心跳,并移除可用资源管理器池(故障恢复),失败次数过高,拉黑)
+      - 资源管理器运行失败
        
-     
+   - shuffle and 排序
+      - 系统进行排序的过程--->shuffle.
+      - map端
+         ![map端](http://dl.iteye.com/upload/attachment/456529/641c4f01-6c9d-322c-b428-9981866d86a6.jpg)
+      - reduce端
+      - 
+
+
 ### MapReduce 应用开发:
    #### 配置 合并
       - 通过Configuration来对配置的资源进行整合
