@@ -56,7 +56,7 @@ http://just2do.iteye.com/blog/2185254
 #### HDFS中文件的读写操作
    - 读
     
-      - ![](./images/plot.jpg)
+      - ![](./images/read.jpg)
    
    - 写
 
