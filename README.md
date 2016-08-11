@@ -316,9 +316,9 @@ http://just2do.iteye.com/blog/2185254
 
 
 ### MapReduce 应用开发:
-   #### 配置 合并
+
+   ####  配置合并
       - 通过Configuration来对配置的资源进行整合
-       
       ```java
          Configuration conf = new Configuration();
          conf.addResource("conf1.xml");
@@ -331,6 +331,8 @@ http://just2do.iteye.com/blog/2185254
          - ToolRunner
       
       - 用MRUnit来进行测试
+### hive 
+
       
       
    
