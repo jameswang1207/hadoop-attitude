@@ -331,7 +331,11 @@ http://just2do.iteye.com/blog/2185254
          - ToolRunner
       
       - 用MRUnit来进行测试
-### hive 
+### hive
+
+
+# Java Code Examples for org.mozilla.universalchardet.UniversalDetector
+http://www.programcreek.com/java-api-examples/index.php?api=org.mozilla.universalchardet.UniversalDetector
 
       
       
