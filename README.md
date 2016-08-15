@@ -337,6 +337,9 @@ http://just2do.iteye.com/blog/2185254
 # Java Code Examples for org.mozilla.universalchardet.UniversalDetector
 http://www.programcreek.com/java-api-examples/index.php?api=org.mozilla.universalchardet.UniversalDetector
 
+#git忽略文件权限提交
+git config --add core.fileMode false
+
       
       
    
