@@ -27,7 +27,8 @@ scp -r 要上传的文件  root@serverip:/opt
 
 　－　$cd ~/.ssh
 　
-　－　$ssh-keygen -t rsa  --------------------然后一直按回车键，就会按照默认的选项将生成的密钥保存在.ssh/id_rsa文件中。
+　－　$ssh-keygen -t rsa
+　　　－　然后一直按回车键，就会按照默认的选项将生成的密钥保存在.ssh/id_rsa文件中。
 　
 　－　$cp id_rsa.pub authorized_keys 
 　　　－　这步完成后，正常情况下就可以无密码登录本机了，即ssh localhost，无需输入密码。
