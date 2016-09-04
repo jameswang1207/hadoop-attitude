@@ -341,7 +341,7 @@ http://www.programcreek.com/java-api-examples/index.php?api=org.mozilla.universa
 git config --add core.fileMode false
 
 #http://data-flair.training/blogs/hadoop-hdfs-data-read-and-write-operations/
-
+#http://blog.csdn.net/l1028386804/article/details/51935169
       
       
    
