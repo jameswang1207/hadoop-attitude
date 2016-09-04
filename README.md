@@ -340,6 +340,8 @@ http://www.programcreek.com/java-api-examples/index.php?api=org.mozilla.universa
 #git忽略文件权限提交
 git config --add core.fileMode false
 
+#http://data-flair.training/blogs/hadoop-hdfs-data-read-and-write-operations/
+
       
       
    
