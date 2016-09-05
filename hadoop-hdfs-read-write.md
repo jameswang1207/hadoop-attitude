@@ -17,6 +17,7 @@
 
 - step 6: Blocks are read in order, with the DFSInputStream opening new connections to datanodes as the client reads through the stream. It will also call the namnode to retrieve the datanode locations for the next batch of blocks as needed. When the client has finished reading, it calls close() on the FSDataInputStream.
 - ![](./images/HDFS-Read-Operation.png)
+
  
 ## Data Write Operation
 - Step 1: The client creates the file by calling create() method on DistributedFileSystem. 
@@ -34,3 +35,5 @@
 - Step 6: When the client has finished writing data, it calls close() on the stream.
 
 - Step 7: This action flushes all the remaining packets to the datanode pipeline and waits for acknowledgments before contacting the namenode to signal that the file is complete The  namenode  already  knows  which blocks  the  file  is  made  up  of , so it only has to wait for blocks to be minimally replicated before returning successfully.
+
+- - ![](./images/HDFS-Write-Operation.png)
