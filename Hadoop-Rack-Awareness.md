@@ -46,3 +46,38 @@
  - 192.168.147.95 tbe192168147095 /dc1/rack3
  - 192.168.147.96 tbe192168147096 /dc1/rack3
  - 需要注意的是，在Namenode上，该文件中的节点必须使用IP，使用主机名无效，而Jobtracker上，该文件中的节点必须使用主机名，使用IP无效,所以，最好ip和主机名都配上。
+ 
+ #.增加数据节点，不重启NameNode
+ - 假设Hadoop集群在192.168.147.68上部署了NameNode和DataNode,启用了机架感知，执行bin/hadoop dfsadmin  printTopology看到的结果：
+ - Rack: /dc1/rack1
+  192.168.147.68:50010 (dbj68)
+ - 现在想增加一个物理位置在rack2的数据节点192.168.147.69到集群中，不重启NameNode.首先，修改NameNode节点的topology.data的配置，加入:192.168.147.69 dbj69 /dc1/rack2,保存。
+ 
+ - 然后，sbin/hadoop-daemons.sh start datanode启动数据节点dbj69,任意节点执行bin/hadoop dfsadmin -printTopology：
+
+ -注意：如果不将dbj69的配置加入到topology.data中，执行sbin/hadoop-daemons.sh start datanode启动数据节点dbj69，datanode日志中会有异常发生，导致dbj69启动不成功
+ 
+ # 节点间距离计算
+ - 有了机架感知，NameNode就可以画出下图所示的datanode网络拓扑图。D1,R1都是交换机，最底层是datanode。则H1的rackid=/D1/R1/H1，H1的parent是R1，R1的是D1。这些rackid信息可以通过topology.script.file.name配置。有了这些rackid信息就可以计算出任意两台datanode之间的距离，得到最优的存放策略，优化整个集群的网络带宽均衡以及数据最优分配.
+ 
+```sh
+distance(/D1/R1/H1,/D1/R1/H1)=0  相同的datanode  
+distance(/D1/R1/H1,/D1/R1/H2)=2  同一rack下的不同datanode  
+distance(/D1/R1/H1,/D1/R2/H4)=4  同一IDC下的不同datanode  
+distance(/D1/R1/H1,/D2/R3/H7)=6  不同IDC下的datanode
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
