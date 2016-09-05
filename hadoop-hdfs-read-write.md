@@ -7,3 +7,5 @@
 
 - step2:DistributedFileSystem calls the Namenode, using RPC (Remote Procedure Call), to determine the locations of the blocks for the first few blocks of the file. For each block, the namenode returns the addresses of all the datanodes that have a copy of that block. Client will interact with respective datanodes to read the file. Namenode also provide a token to the client which it shows to data node for authentication.
 
+   - The DistributedFileSystem returns an object of FSDataInputStream(an input stream that supports file seeks) to the client for it to read data from FSDataInputStream in turn wraps a DFSInputStream, which manages the datanode and namenode I/O.
+
