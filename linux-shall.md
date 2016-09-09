@@ -33,3 +33,7 @@ scp -r 要上传的文件  root@serverip:/opt
 　  - 把刚刚产生的authorized_keys文件拷一份到主机B上
 　- $chmod 600 authorized_keys
 　　- 进入主机B的.ssh目录，改变authorized_keys文件的许可权限
+
+#linux复制目录下带子目录文件的口令
+  - example: find /user/xxx/ -name '*.jar' | xargs cp -t /user/xxx/target目录
+  - example: find /user/xxx/ -name '*.jar' | xargs -i cp {} /user/xxx/target目录
