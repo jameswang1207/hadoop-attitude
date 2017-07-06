@@ -37,3 +37,5 @@ scp -r 要上传的文件  root@serverip:/opt
 #linux复制目录下带子目录文件的口令
   - example: find /user/xxx/ -name '*.jar' | xargs cp -t /user/xxx/target目录
   - example: find /user/xxx/ -name '*.jar' | xargs -i cp {} /user/xxx/target目录
+
+nutch
